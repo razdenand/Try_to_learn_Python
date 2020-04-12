@@ -93,7 +93,7 @@ def chose_sq(pattern, f, u, chi, p00, p01, p10, p11, threshold):
         f += 1.0
 
 
-def Minkovsly2D(image, threshold):
+def minkovsly2D(image, threshold):
     height = image.shape[0]
     width = image.shape[1]
 
@@ -133,7 +133,7 @@ def test_gaussian(shape):
     Chi = []
 
     for threshold in np.linspace(0.0, 1.0, 100):
-        (f, u, chi) = Minkovsly2D(image, threshold)
+        (f, u, chi) = minkovsly2D(image, threshold)
         F.append(f)
         U.append(u)
         Chi.append(chi)
