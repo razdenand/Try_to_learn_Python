@@ -163,8 +163,8 @@ def ans():
 
         smtpObj = smtplib.SMTP('smtp.mail.ru', 587)
         smtpObj.starttls()
-        smtpObj.login('razumov.daniil@mail.ru', 'Yfabuf jy Dfv 99')
-        smtpObj.sendmail("razumov.daniil@mail.ru", "{}".format(mail), "{}".format(cpp_articles))
+        smtpObj.login('noreply.2021@mail.ru', 'daniil123450705')
+        smtpObj.sendmail("noreply.2021@mail.ru", "{}".format(mail), "{}".format(cpp_articles))
         smtpObj.quit()
     global true_vals
     global values
