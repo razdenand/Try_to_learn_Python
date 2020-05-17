@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+<link rel="shortcut icon" type="image/x-icon" href="/static/css/images/favicon.ico" />
+<script src="/static/js/jquery-1.4.2.js" type="text/javascript"></script>
+<script src="/static/js/js-fnc.js" type="text/javascript"></script>
+    <style>
+   .colortext {
+    background-color: #ffe; /* Цвет фона */
+    color: #930; /* Цвет текста */
+   }
+  </style>
+<!--[if IE 6]><link rel="stylesheet" href="/static/css/ie6.css" type="text/css" media="all" /><![endif]-->
+</head>
+<body>
+<div id="featured-content">
+  <div class="shell">
+<big><big>Поздравляем, вы правильно ответили на {{val}} из 10 вопросов<br>
+    Введите адрес вашей электронной почты и мы отправим вам материалы, которые помогут вам лучше изучить С++
+    <form action="/mail" method="post">
+<input type="text" name="mail">
+         <button type="submit">Вернуться на главную</button>
+    </form>
+</big></big>
+  </div></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+<link rel="shortcut icon" type="image/x-icon" href="/static/css/images/favicon.ico" />
+<script src="/static/js/jquery-1.4.2.js" type="text/javascript"></script>
+<script src="/static/js/js-fnc.js" type="text/javascript"></script>
+  <style>
+   INPUT[type="text"] {
+    background-color: #ffffee;
+    color: #000000;
+   }
+  </style>
+<!--[if IE 6]><link rel="stylesheet" href="/static/css/ie6.css" type="text/css" media="all" /><![endif]-->
+</head>
+<body>
+<div id="featured-content">
+  <div class="shell">
+<big><big>
+ Вопрос {{val}} из 10 <br>
+{% for k in key %}
+      {{ k }} <br>
+ {%- endfor %}
+{{ans2}}
+    </big></big>
+<form action="/hm" method="post">
+ <select name="kek" id="kek">
+	<option value="CE">Compilation error</option>
+	<option value="OK" >Its programm have output</option>
+	<option value="UD">Undefined</option>
+	<option value="US">Unspecialist</option>
+</select>
+<input type="text" name="additional" id="additional" hidden>
+    <input type="hidden"  name="id" value="{{id}}">
+    <br>
+    <p><input type="submit" value="Отправить"></p>
+  </form>
+<script>
+    document.getElementById("kek").onchange = function() {
+  document.getElementById("additional").hidden = this.value !== "OK";
+}
+</script>
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/add">
+    <input type="text" name="add"> добавить значение
+</form>
+
+<form method="post" action="/dele">
+    <input type="text" name="del"> удалить значение
+</form>
+<h3>Текущие значения в базе данных
+</h3>
+{% for x in posts %}
+  {{x}}<br>
+{% endfor %}
+</body>
+</html>

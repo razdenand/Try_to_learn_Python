@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+<h2>Небольшой тест</h2>
+<form method="post" action="/lol">
+  <p><b>Что из представленных типов данных является неизменяемым?</b></p>
+    <input type="radio" name="answer" value="a1">dict<Br>
+  <input type="radio" name="answer" value="a2">list<Br>
+  <input type="radio" name="answer" value="a3">frozenset<Br>
+  <input type="radio" name="answer" value="a4">defaultdict<Br>
+    <button type="submit">Отправить</button>
+</form>
+     {% if key == True  %}
+        Верно <br>
+    <form method="post" action="/quiz">
+        <button type="submit">Следующий вопрос</button>
+        </form>
+    {% elif key == False %}
+        Неверно
+    {% else %}
+
+    {% endif %}
+  </body>
+</html>
