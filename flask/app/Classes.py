@@ -24,4 +24,4 @@ class DB:
         return ans
 
 
-db = DB('127.0.0.1', '8000', 'quiz', 'root', 'daniil1999', 'utf8mb4')
+db = DB('127.0.0.1', '80', 'db_razumov', 'razumov', 'mV5M4V', 'utf8mb4')
