@@ -4,12 +4,9 @@ backcall==0.1.0
 bleach==3.1.4
 certifi==2019.9.11
 chardet==3.0.4
-click==7.1.1
 cycler==0.10.0
-Cython==0.29.16
 decorator==4.4.2
 defusedxml==0.6.0
-Django==2.2.7
 entrypoints==0.3
 Flask==1.1.2
 idna==2.6
@@ -39,8 +36,6 @@ parso==0.6.2
 pbr==5.4.3
 pexpect==4.8.0
 pickleshare==0.7.5
-prometheus-client==0.7.1
-prometheus-flask-exporter==0.13.0
 prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 Pygments==2.6.1
@@ -52,7 +47,6 @@ python-dateutil==2.8.1
 pytz==2019.3
 pyzmq==19.0.0
 qtconsole==4.7.2
-QtPy==1.9.0
 regex==2019.8.19
 requests==2.18.4
 reverse-geocoder==1.5.1
@@ -65,7 +59,6 @@ terminado==0.8.3
 testpath==0.4.4
 tornado==6.0.4
 traitlets==4.3.3
-urllib3==1.22
 uWSGI==2.0.18
 virtualenv==16.7.7
 virtualenv-clone==0.5.3
