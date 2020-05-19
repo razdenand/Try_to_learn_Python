@@ -2,5 +2,5 @@ from app import app
 import view
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(host='93.180.53.223')
 
