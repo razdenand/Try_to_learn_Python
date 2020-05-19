@@ -4,7 +4,6 @@ from Classes import *
 import requests
 import random
 import smtplib
-from django.http import HttpResponseRedirect
 import time
 
 answer3 = 0
