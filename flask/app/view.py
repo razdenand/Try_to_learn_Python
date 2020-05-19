@@ -91,7 +91,7 @@ def hm():
         return render_template('final.html', val=true_vals)
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/razumov/flask/Python_app/flask/app/', methods=["GET", "POST"])
 def mainn():
     global true_vals
     global values
