@@ -9,6 +9,7 @@
    INPUT[type="text"] {
     background-color: #ffffee;
     color: #008000;
+    height: 35px;
    }
   </style>
 <style>
@@ -65,14 +66,15 @@ input.button4:active {
 </big></big></big>
       <br>
 <form action="/hm" method="post">
- <select name="kek" id="kek">
+ <select name="kek" id="kek" class="i">
 	<option value="CE">Ошибка компиляции</option>
 	<option value="OK" >Программа имеет вывод</option>
 	<option value="UD">Неопределенное поведение</option>
 	<option value="US">Неспецифицированное поведение</option>
 </select>
-<input type="text" name="additional" id="additional" hidden>
+<input type="text" name="additional"  id="additional" hidden>
     <input type="hidden"  name="id" value="{{id}}">
+    <br>
     <br>
     <p><input type="submit" class="button4" value="Ответить"></p>
   </form>

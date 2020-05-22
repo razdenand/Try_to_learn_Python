@@ -4,6 +4,7 @@ from Classes import *
 import requests
 import random
 import smtplib
+from django.http import HttpResponseRedirect
 import time
 
 answer3 = 0
@@ -13,6 +14,7 @@ answer = ['a3', 'b1', 'c1']
 values = 1
 true_vals = 0
 que = 0
+
 
 @app.route('/main', methods=['GET'])
 def main():
@@ -77,6 +79,8 @@ def hm():
         if res == data['questions'][int(id)]['answer']:
             true_vals += 1
             pob = 'Верно!'
+        else:
+            pob = 'Неверно!'
     elif answer != 'OK' and answer == data2:
         true_vals += 1
         pob = 'Верно!'
@@ -85,7 +89,8 @@ def hm():
     if session['visits'] < 10:
         req_data = {'answer': data['questions'][int(id)]['result'],
                     'explanation': data['questions'][int(id)]['explanation']}
-        return render_template('buf.html', answer=req_data['answer'], exp=req_data['explanation'], val=session['visits'], pob=pob,
+        return render_template('buf.html', answer=req_data['answer'], exp=req_data['explanation'],
+                               val=session['visits'], pob=pob,
                                tr=true_vals, id=id)
     else:
         return render_template('final.html', val=true_vals)
@@ -106,8 +111,8 @@ def mainn():
                 is_in_table = False
                 question = data['questions'][lole]['question']
                 lol = question.split('\r\n')
-                #session['question'][i] = lol
-                #session['id'][i] = lole
+                # session['question'][i] = lol
+                # session['id'][i] = lole
     session['visits'] = 0
     return render_template('main.html')
 
@@ -120,7 +125,7 @@ def quiz():
         session['visits'] = 1  # настройка данных сессии
     data = requests.get('http://cppquiz.org/static/published.json').json()
     is_in_table = True
-    while is_in_table == True:
+    while is_in_table:
         lole = random.randint(0, 124)
         if db.q_fetchall('select id from quest where id={}'.format(lole)) == ():
             is_in_table = False
@@ -143,18 +148,18 @@ def quiz():
     username = request.args.get('id')
     data2 = request.form.get('kek')
     return render_template("q2.html", key=lol, id=lole, val=session['visits'])
-    #return redirect(url_for('hm'))
-    #return render_template("q2.html", key=lol, id=lole, val=session['visits'])
+
 
 @app.route('/buf', methods=["POST", "GET"])
 def buf():
     pass
 
+
 @app.route('/mail', methods=["POST", "GET"])
 def ans():
     session['visits'] = 0
     mail = request.form.get('mail')
-    if mail != '':
+    if mail != '' and '@' in mail:
         cpp_articles = 'Basic language C++ materials:\n' \
                        'Stroustrup: The C++ Programming Language (4th Edition)\n' \
                        'https://ru.cppreference.com/w/ - website with basic C ++ documentation\n' \
@@ -171,6 +176,7 @@ def ans():
     values = 0
     session.pop('visits', None)
     return redirect(url_for('mainn'))
+
 
 # реализовать рассылку писем
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
