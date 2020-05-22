@@ -5,19 +5,36 @@
 <link rel="shortcut icon" type="image/x-icon" href="/static/css/images/favicon.ico" />
 <script src="/static/js/jquery-1.4.2.js" type="text/javascript"></script>
 <script src="/static/js/js-fnc.js" type="text/javascript"></script>
+     <style>
+a.button7 {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: .8em 1em calc(.8em + 3px);
+  border-radius: 3px;
+  background: rgb(64,199,129);
+  box-shadow: 0 -3px rgb(53,167,110) inset;
+  transition: 0.2s;
+}
+a.button7:hover { background: rgb(53, 167, 110); }
+a.button7:active {
+  background: rgb(33,147,90);
+  box-shadow: 0 3px rgb(33,147,90) inset;
+}
+    </style>
 <!--[if IE 6]><link rel="stylesheet" href="/static/css/ie6.css" type="text/css" media="all" /><![endif]-->
 </head>
-<body>
+<body background="color.jpg">
 <div id="featured-content">
   <div class="shell">
     <h2>Добро пожаловать на сайт викторины С++</h2>
     <p>Здесь вы можете пройти тест из 10 вопросов по языку С++, узнать свой результат и получить необходимые материалы подготовки на свою почту</p>
+      <br><br>
   </div>
 </div>
 <div id="featured-content">
   <div class="shell">
-
-<a href="/main"><font size="4"><a href="/quiz">Сыграть викторину С++</font></a> <br>
+<a href="/quiz" class="button7">Сыграть викторину С++</font></a> <br>
         </div>
 </div>
 </body>
