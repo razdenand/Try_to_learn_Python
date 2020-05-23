@@ -18,12 +18,21 @@ a {
 a:hover {
 	color:#000;
 }
+.class_bla_bla{
+  font-weight:bold;
+	height: 35px;
+	color:#000000;
+}
 a img {
 	border:0;
 }
-select.i{
-	height: 35px;
 
+select.i{
+	height: 28px;
+
+}
+input.j{
+	height: 28px;
 }
 input, textarea, select {
 	font-family:Arial, Helvetica, sans-serif;
