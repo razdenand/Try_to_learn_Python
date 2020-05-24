@@ -78,7 +78,10 @@ def hm():
     if answer == 'OK' and answer == data2:
         if res == data['questions'][int(id)]['answer']:
             true_vals += 1
+            ans = db.q_fetchall('select count(*) as k from quest;')
             pob = 'Верно!'
+            value = ans[0]['k'] - 1
+            final.append(value)
         else:
             pob = 'Неверно!'
     elif answer != 'OK' and answer == data2:
