@@ -4,6 +4,7 @@ from Classes import *
 import requests
 import random
 import smtplib
+from django.http import HttpResponseRedirect
 import time
 
 answer3 = 0
@@ -13,7 +14,7 @@ answer = ['a3', 'b1', 'c1']
 values = 1
 true_vals = 0
 que = 0
-
+final = []
 
 @app.route('/main', methods=['GET'])
 def main():
@@ -68,6 +69,7 @@ def hm():
     id = request.form.get('id')
     question = data['questions'][int(id)]['question']
     answer = data['questions'][int(id)]['result']
+    answer1 = data['questions'][int(id)]['answer']
     lol = question.split('\r\n')
     global true_vals
     global que
@@ -81,25 +83,34 @@ def hm():
         else:
             pob = 'Неверно!'
     elif answer != 'OK' and answer == data2:
+        ans = db.q_fetchall('select count(*) as k from quest;')
+        value = ans[0]['k'] - 1
+        final.append(value)
         true_vals += 1
         pob = 'Верно!'
     else:
         pob = 'Неверно!'
-    if session['visits'] < 10:
+    if session['visits'] < 11:
         req_data = {'answer': data['questions'][int(id)]['result'],
                     'explanation': data['questions'][int(id)]['explanation']}
-        return render_template('buf.html', answer=req_data['answer'], exp=req_data['explanation'],
-                               val=session['visits'], pob=pob,
-                               tr=true_vals, id=id)
+        if pob == 'Верно!':
+            return render_template('buf.html', val=session['visits'], pob=pob)
+        else:
+            return render_template('buf.html', answer=req_data['answer'], exp=req_data['explanation'],
+                                   val=session['visits'], pob=pob,
+                                   tr=true_vals, id=id, answer1=answer1)
     else:
-        return render_template('final.html', val=true_vals)
+        return render_template('final.html', val=f"Вы правильно ответили на {true_vals} из 10 вопросов:", mass=final)
 
 
 @app.route('/', methods=["GET", "POST"])
 def mainn():
     global true_vals
     global values
+    global final
+    final = []
     true_vals = 0
+    db.q_fetchall('delete from quest;')
     values = 0
     data = requests.get('http://cppquiz.org/static/published.json').json()
     for i in range(10):
@@ -133,7 +144,7 @@ def quiz():
     global true_vals
     global que
     values += 1
-    if values == 11:
+    if values == 12:
         values = 1
         true_vals = 0
 
@@ -146,7 +157,10 @@ def quiz():
     lol = question.split('\r\n')
     username = request.args.get('id')
     data2 = request.form.get('kek')
-    return render_template("q2.html", key=lol, id=lole, val=session['visits'])
+    if session['visits'] < 11:
+        return render_template("q2.html", key=lol, id=lole, val=session['visits'])
+    else:
+        return render_template('final.html', val=f"Вы правильно ответили на {true_vals} из 10 вопросов:", mass=final)
 
 
 @app.route('/buf', methods=["POST", "GET"])
@@ -156,9 +170,10 @@ def buf():
 
 @app.route('/mail', methods=["POST", "GET"])
 def ans():
+    global true_vals
     session['visits'] = 0
     mail = request.form.get('mail')
-    if mail != '' and '@' in mail:
+    if mail != '' and '@' in mail and '.' in mail:
         cpp_articles = 'Basic language C++ materials:\n' \
                        'Stroustrup: The C++ Programming Language (4th Edition)\n' \
                        'https://ru.cppreference.com/w/ - website with basic C ++ documentation\n' \
@@ -169,11 +184,15 @@ def ans():
         smtpObj.login('noreply.2021@mail.ru', 'daniil123450705')
         smtpObj.sendmail("noreply.2021@mail.ru", "{}".format(mail), "{}".format(cpp_articles))
         smtpObj.quit()
-    global true_vals
-    global values
-    true_vals = 0
-    values = 0
-    session.pop('visits', None)
+        global values
+        true_vals = 0
+        values = 0
+        session.pop('visits', None)
+        global final
+        final = []
+    else:
+        return render_template('final.html', message='Неправильный формат почтового ящика, повторите попытку!')
+
     return redirect(url_for('mainn'))
 
 

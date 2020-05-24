@@ -63,10 +63,29 @@ input.button4:active {
 <div id="featured-content">
   <div class="shell">
       <h2>Итоги</h2>
-<big><big><big>Вы правильно ответили на {{val}} из 10 вопросов<br>
+      <h1>{{val}}</h1>
+<big><big><big><br>
+    {% if val %}
+    {% for key in range(10) %}
+    {% if key in mass %}
+        Вопрос {{key + 1}} Верно <br>
+    {% else %}
+        Вопрос {{key + 1}} Неверно <br>
+    {% endif %}
+    {% endfor %}
+       {% endif %}
+    <br>
+    {% if val %}
     Введите адрес вашей электронной почты и мы отправим вам материалы, которые помогут вам лучше изучить С++
+      {% endif %}
     <form action="/mail" method="post">
+        <br>
+        {% if message %}
         <br><br>
+        {{message}}
+        <br>
+        <br>
+        {% endif %}
 <input type="text" name="mail">
         <br>
         <br>

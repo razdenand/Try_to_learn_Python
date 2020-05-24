@@ -60,8 +60,25 @@ input.button4:active {
 {% for k in que %}
       {{ k }} <br>
  {%- endfor %}
+    {% if answer %}
+    <h4>Правильный ответ:</h4>
+    {% endif %}
+    {% if answer == 'OK' %}
+       Программа имеет вывод: '{{answer1}}'<br>
+    {% endif %}
+    {% if answer == 'CE' %}
+    Ошибка компиляции<br>
+    {% endif %}
+       {% if answer == 'UD' %}
+    Неопределенное поведение<br>
+    {% endif %}
+      {% if answer == 'US' %}
+    Неспецифицированное поведение<br>
+    {% endif %}<br>
+    {% if exp %}
     <h4>Объяснение:</h4>
 {{exp}}<br>
+    {% endif %}
     </big></big>
       <br>
 <form method="post" action="/quiz">
